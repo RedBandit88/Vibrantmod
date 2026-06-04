@@ -1,0 +1,25 @@
+{
+  "targets": [
+    "swap"
+  ],
+  "passes": [
+    {
+      "name": "vibrantmod:vibrance",
+      "intarget": "minecraft:main",
+      "outtarget": "swap",
+      "uniforms": [
+        { "name": "Saturation",  "values": [ 1.6 ] },
+        { "name": "Contrast",    "values": [ 1.1 ] },
+        { "name": "Brightness",  "values": [ 0.0 ] },
+        { "name": "Temperature", "values": [ 0.0 ] },
+        { "name": "Vibrance",    "values": [ 0.4 ] },
+        { "name": "Gamma",       "values": [ 0.95 ] }
+      ]
+    },
+    {
+      "name": "blit",
+      "intarget": "swap",
+      "outtarget": "minecraft:main"
+    }
+  ]
+}

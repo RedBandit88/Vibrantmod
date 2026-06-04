@@ -1,0 +1,24 @@
+{
+  "blend": {
+    "func": "add",
+    "srcrgb": "one",
+    "dstrgb": "zero"
+  },
+  "vertex": "vibrantmod:vibrance",
+  "fragment": "vibrantmod:vibrance",
+  "attributes": [ "Position" ],
+  "samplers": [
+    { "name": "DiffuseSampler" }
+  ],
+  "uniforms": [
+    { "name": "ProjMat",     "type": "matrix4x4", "count": 16, "values": [1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1] },
+    { "name": "InSize",      "type": "float",     "count": 2,  "values": [1, 1] },
+    { "name": "OutSize",     "type": "float",     "count": 2,  "values": [1, 1] },
+    { "name": "Saturation",  "type": "float",     "count": 1,  "values": [1.6] },
+    { "name": "Contrast",    "type": "float",     "count": 1,  "values": [1.1] },
+    { "name": "Brightness",  "type": "float",     "count": 1,  "values": [0.0] },
+    { "name": "Temperature", "type": "float",     "count": 1,  "values": [0.0] },
+    { "name": "Vibrance",    "type": "float",     "count": 1,  "values": [0.4] },
+    { "name": "Gamma",       "type": "float",     "count": 1,  "values": [0.95] }
+  ]
+}

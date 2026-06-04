@@ -1,0 +1,51 @@
+plugins {
+    id "net.fabricmc.fabric-loom" version "${project.loom_version}"
+    id "maven-publish"
+}
+
+version = project.mod_version
+group = project.maven_group
+
+repositories {
+    // Cloth Config for the settings screen
+    maven { url = "https://maven.shedaniel.me/" }
+    maven { url = "https://maven.terraformersmc.com/releases/" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    // MC 26.1+ is unobfuscated – no mappings line needed
+
+    implementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+    // Cloth Config API for in-game config screen (optional at runtime – players can also edit JSON)
+    modImplementation("me.shedaniel.cloth:cloth-config-fabric:17.0.144") {
+        exclude(group: "net.fabricmc.fabric-api")
+    }
+    // Mod Menu integration so the config button appears in the mods list
+    modImplementation "com.terraformersmc:modmenu:14.0.0"
+}
+
+processResources {
+    inputs.property "version", project.version
+    filesMatching("fabric.mod.json") {
+        expand "version": inputs.properties.version
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 25
+}
+
+java {
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_25
+    targetCompatibility = JavaVersion.VERSION_25
+}
+
+jar {
+    from("LICENSE") {
+        rename { "${it}_${project.archivesBaseName}" }
+    }
+}
